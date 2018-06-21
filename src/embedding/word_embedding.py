@@ -12,6 +12,7 @@ import tensorflow as tf
 flags = tf.app.flags
 FLAGS = flags.FLAGS
 flags.DEFINE_string('output_dir', 'output', 'Output Directory.')
+flags.DEFINE_string('input_dir', 'input', 'Input Directory.')
 
 
 def maybe_download(filename, url, expected_bytes):
@@ -59,7 +60,8 @@ def build_dataset(words, n_words):
 def collect_data(vocabulary_size=10000):
   #  url = 'http://mattmahoney.net/dc/'
    # filename = maybe_download('text8.zip', url, 31344016)
-    vocabulary = read_data("train_eng.zip")
+    input_path = os.path.join(FLAGS.input_dir, "word_embedding/")
+    vocabulary = read_data(input_path + "train_eng.zip")
     print(vocabulary[:7])
     data, count, dictionary, reverse_dictionary = build_dataset(vocabulary,
                                                                 vocabulary_size)
