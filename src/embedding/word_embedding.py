@@ -60,8 +60,8 @@ def build_dataset(words, n_words):
 def collect_data(vocabulary_size=10000):
   #  url = 'http://mattmahoney.net/dc/'
    # filename = maybe_download('text8.zip', url, 31344016)
-    input_path = os.path.join(FLAGS.input_dir, "word_embedding/input/")
-    vocabulary = read_data(input_path + "train_eng.zip")
+    input_path = os.path.join(FLAGS.input_dir, "train_eng.zip")
+    vocabulary = read_data(input_path)
     print(vocabulary[:7])
     data, count, dictionary, reverse_dictionary = build_dataset(vocabulary,
                                                                 vocabulary_size)
@@ -189,8 +189,8 @@ def run(graph, num_steps):
               log_str = '%s %s,' % (log_str, close_word)
             print(log_str)
       final_embeddings = normalized_embeddings.eval()
-      output_path = os.path.join(FLAGS.output_dir, "word_embedding/")
-      np.save(output_path + 'word_embeding_english.npy', np.array(final_embeddings))
+      output_path = os.path.join(FLAGS.output_dir, "word_embeding_english.npy")
+      np.save(output_path, np.array(final_embeddings))
 
 num_steps = 50000
 softmax_start_time = dt.datetime.now()
