@@ -9,6 +9,10 @@ import datetime as dt
 import numpy as np
 import tensorflow as tf
 
+flags = tf.app.flags
+FLAGS = flags.FLAGS
+flags.DEFINE_string('output_dir', 'output', 'Output Directory.')
+
 
 def maybe_download(filename, url, expected_bytes):
     """Download a file if not present, and make sure it's the right size."""
@@ -183,7 +187,8 @@ def run(graph, num_steps):
               log_str = '%s %s,' % (log_str, close_word)
             print(log_str)
       final_embeddings = normalized_embeddings.eval()
-      np.save('word_embeding_english.npy', np.array(final_embeddings))
+      output_path = os.path.join(FLAGS.output_dir, "word_embedding/")
+      np.save(output_path + 'word_embeding_english.npy', np.array(final_embeddings))
 
 num_steps = 50000
 softmax_start_time = dt.datetime.now()
