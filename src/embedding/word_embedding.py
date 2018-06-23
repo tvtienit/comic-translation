@@ -32,7 +32,7 @@ def maybe_download(filename, url, expected_bytes):
 # Read the data into a list of strings.
 def read_data(filename):
     """Extract the first file enclosed in a zip file as a list of words."""
-    with open(filename, 'r') as f:
+    with tf.gfile.GFile(filename, "r") as f:
         data = tf.compat.as_str(f.read()).split()
     return data
 
