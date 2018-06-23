@@ -136,7 +136,7 @@ with graph.as_default():
   # convert train_context to a one-hot format
   train_one_hot = tf.one_hot(train_context, vocabulary_size)
 
-  cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=hidden_out, labels=train_one_hot))
+  cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=hidden_out, labels=train_one_hot))
 
   # Construct the SGD optimizer using a learning rate of 1.0.
   optimizer = tf.train.GradientDescentOptimizer(1.0).minimize(cross_entropy)
