@@ -9,6 +9,8 @@ import zipfile
 import datetime as dt
 import numpy as np
 
+import embedding.constant as constant
+
 flags = tf.app.flags
 FLAGS = flags.FLAGS
 
@@ -16,7 +18,7 @@ FLAGS = flags.FLAGS
 flags.DEFINE_string('output_dir', constant.LOCAL_OUTPUT, 'Output Directory.')
 flags.DEFINE_string('input_dir', constant.LOCAL_INPUT, 'Input Directory.')
 flags.DEFINE_integer('num_steps', constant.DEFAULT_NUM_STEP, 'Number of training steps')
-flags.DEFINE_boolean('gs', False, 'Google Cloud Storage.')
+flags.DEFINE_integer('gs', 0, 'Google Cloud Storage.')
 
 def maybe_download(filename, url, expected_bytes):
     """Download a file if not present, and make sure it's the right size."""
@@ -37,7 +39,7 @@ def read_data(filename):
     """Extract the first file enclosed in a zip file as a list of words."""
     data = None
     data_bytes = None
-    if FLAGS.gs == True:
+    if FLAGS.gs == 1:
       with tf.gfile.GFile(filename, "r") as f:
         data_bytes = f.read()
     else:
@@ -163,7 +165,7 @@ with graph.as_default():
   init = tf.global_variables_initializer()
 
 def get_file_storage(output_path):
-  if FLAGS.gs == True:
+  if FLAGS.gs == 1:
     return file_io.FileIO(output_path, 'w')
   return output_path
 
