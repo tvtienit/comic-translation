@@ -14,7 +14,6 @@ from embedding import constant
 flags = tf.app.flags
 FLAGS = flags.FLAGS
 
-set_train_flags()
 def set_train_flags():
   global FLAGS
   flag_keys = ['output_dir', 'input_dir', 'num_steps', 'gs', 'vocabulary_size', 'batch_size', 'skip_window', 'num_skips'
@@ -32,6 +31,7 @@ def set_train_flags():
 
   print('[INFO] Configure flag successfully')
 
+set_train_flags()
 
 def maybe_download(filename, url, expected_bytes):
     """Download a file if not present, and make sure it's the right size."""
