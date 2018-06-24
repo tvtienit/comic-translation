@@ -14,6 +14,7 @@ from embedding import constant
 flags = tf.app.flags
 FLAGS = flags.FLAGS
 
+set_train_flags()
 def set_train_flags():
   global FLAGS
   flag_keys = ['output_dir', 'input_dir', 'num_steps', 'gs', 'vocabulary_size', 'batch_size', 'skip_window', 'num_skips'
@@ -28,6 +29,8 @@ def set_train_flags():
       FLAGS.DEFINE_string(flag_keys[i], flag_default_values[i], flag_default_description)
     else:
       FLAGS.DEFINE_integer(flag_keys[i], flag_default_values[i], flag_default_description)
+
+  print('[INFO] Configure flag successfully')
 
 
 def maybe_download(filename, url, expected_bytes):
@@ -219,7 +222,6 @@ def run(graph, num_steps):
       output_path = get_file_storage(os.path.join(FLAGS.output_dir, "word_embeding_" + FLAGS.language + ".npy"))
       np.save(output_path, np.array(final_embeddings))
 
-set_train_flags()
 num_steps = FLAGS.num_steps
 softmax_start_time = dt.datetime.now()
 run(graph, num_steps=num_steps)
