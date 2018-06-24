@@ -11,8 +11,7 @@ import numpy as np
 
 # import local py files
 import sys
-sys.path.append('../utils/flag')
-sys.path.append('../utils/constant')
+sys.path.append('../utils')
 
 import flag
 import constant
