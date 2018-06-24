@@ -11,11 +11,11 @@ flags.DEFINE_integer('num_step', constant.DEFAULT_NUM_STEP, 'Number of training 
 flags.DEFINE_boolean('gs', False, 'Google Cloud Storage.')
 
 def get_flag_value(name):
-	if FLAGS[name] is not None
+	if FLAGS[name] is not None:
 		return FLAGS[name].value
 	return None
 
 def check_flag_value(name, value)
-	if FLAGS[name] is not None and FLAGS[name].value == value
+	if FLAGS[name] is not None and FLAGS[name].value == value:
 		return True
 	return False
