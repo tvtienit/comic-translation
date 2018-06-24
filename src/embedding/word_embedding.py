@@ -10,6 +10,9 @@ import datetime as dt
 import numpy as np
 
 # import local py files
+import sys
+sys.path.append('../utils')
+
 import flag
 import constant
 
