@@ -15,6 +15,7 @@ flags = tf.app.flags
 FLAGS = flags.FLAGS
 
 def set_train_flags():
+  global FLAGS
   flag_keys = ['output_dir', 'input_dir', 'num_steps', 'gs', 'vocabulary_size', 'batch_size', 'skip_window', 'num_skips'
                'embedding_size', 'language']
   flag_types = [0, 0, 1, 1, 1, 1, 1, 1, 1, 0]
