@@ -74,7 +74,7 @@ def collect_data(vocabulary_size=10000):
    # filename = maybe_download('text8.zip', url, 31344016)
     input_path = os.path.join(FLAGS.input_dir, "train.en")
     vocabulary = read_data(input_path)
-    print(vocabulary[:7])
+    print('VOCAB' + vocabulary[:7])
     data, count, dictionary, reverse_dictionary = build_dataset(vocabulary,
                                                                 vocabulary_size)
     del vocabulary  # Hint to reduce memory.
