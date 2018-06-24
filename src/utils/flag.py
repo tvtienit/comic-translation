@@ -15,7 +15,7 @@ def get_flag_value(name):
 		return FLAGS[name].value
 	return None
 
-def check_flag_value(name, value)
+def check_flag_value(name, value):
 	if FLAGS[name] is not None and FLAGS[name].value == value:
 		return True
 	return False
