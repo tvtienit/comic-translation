@@ -38,14 +38,13 @@ def maybe_download(filename, url, expected_bytes):
 def read_data(filename):
     """Extract the first file enclosed in a zip file as a list of words."""
     data = None
-    data_bytes = None
     if FLAGS.gs == 1:
       with tf.gfile.GFile(filename, "r") as f:
-        data_bytes = f.read()
+        data = tf.compat.as_str(f.read())
     else:
       with open(filename, 'r') as f:
-        data_bytes = f.read()
-    data = tf.compat.as_str(data_bytes)
+        data = tf.compat.as_str(f.read())
+        
     return data
 
 def build_dataset(words, n_words):
