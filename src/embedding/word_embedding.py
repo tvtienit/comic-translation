@@ -15,7 +15,7 @@ flags = tf.app.flags
 FLAGS = flags.FLAGS
 
 def set_train_flags():
-  global FLAGS
+  global flags
   flag_keys = ['output_dir', 'input_dir', 'num_steps', 'gs', 'vocabulary_size', 'batch_size', 'skip_window', 'num_skips'
                'embedding_size', 'language']
   flag_types = [0, 0, 1, 1, 1, 1, 1, 1, 1, 0]
@@ -25,9 +25,9 @@ def set_train_flags():
   flag_default_description = 'Understand it urself'
   for i in range(0, len(flag_keys) - 1):
     if flag_types[i] == 0:
-      FLAGS.DEFINE_string(flag_keys[i], flag_default_values[i], flag_default_description)
+      flags.DEFINE_string(flag_keys[i], flag_default_values[i], flag_default_description)
     else:
-      FLAGS.DEFINE_integer(flag_keys[i], flag_default_values[i], flag_default_description)
+      flags.DEFINE_integer(flag_keys[i], flag_default_values[i], flag_default_description)
 
   print('[INFO] Configure flag successfully')
 
