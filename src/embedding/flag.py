@@ -1,5 +1,5 @@
 import tensorflow as tf
-import constant
+import embedding.constant as constant
 
 flags = tf.app.flags
 FLAGS = flags.FLAGS
