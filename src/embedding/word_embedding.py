@@ -7,10 +7,15 @@ import os
 import random
 import zipfile
 import datetime as dt
-import constant
-import flag
-
 import numpy as np
+
+# import local py files
+import sys
+sys.path.append('../utils/flag')
+sys.path.append('../utils/constant')
+
+import flag
+import constant
 
 def maybe_download(filename, url, expected_bytes):
     """Download a file if not present, and make sure it's the right size."""
