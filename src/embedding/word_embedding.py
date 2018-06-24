@@ -40,11 +40,11 @@ def read_data(filename):
     data = None
     if FLAGS.gs == 1:
       with tf.gfile.GFile(filename, "r") as f:
-        data = tf.compat.as_str(f.read())
+        data = tf.compat.as_str(f.read()).split()
     else:
       with open(filename, 'r') as f:
-        data = tf.compat.as_str(f.read())
-        
+        data = tf.compat.as_str(f.read()).split()
+
     return data
 
 def build_dataset(words, n_words):
