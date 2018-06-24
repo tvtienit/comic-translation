@@ -10,12 +10,15 @@ flags.DEFINE_string('input_dir', constant.LOCAL_INPUT, 'Input Directory.')
 flags.DEFINE_integer('num_steps', constant.DEFAULT_NUM_STEP, 'Number of training steps')
 flags.DEFINE_boolean('gs', False, 'Google Cloud Storage.')
 
+def __dict__(name):
+	return FLAGS.FlagsByModuleDict(name)
+
 def get_flag_value(name):
-	if FLAGS[name] is not None:
-		return FLAGS[name].value
+	if __dict__(name) is not None:
+		return __dict__(name).value
 	return None
 
 def check_flag_value(name, value):
-	if FLAGS[name] is not None and FLAGS[name].value == value:
+	if __dict__(name) is not None and __dict__(name).value == value:
 		return True
 	return False
