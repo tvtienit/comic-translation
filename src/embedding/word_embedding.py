@@ -10,8 +10,9 @@ import datetime as dt
 import numpy as np
 
 # import local py files
-import flag
-import constant
+import importlib
+flag = importlib.import_module('flag')
+constant = importlib.import_module('constant')
 
 def maybe_download(filename, url, expected_bytes):
     """Download a file if not present, and make sure it's the right size."""
