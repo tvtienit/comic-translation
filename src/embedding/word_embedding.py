@@ -9,16 +9,25 @@ import zipfile
 import datetime as dt
 import numpy as np
 
-import embedding.constant as constant
+from embedding import constant
 
 flags = tf.app.flags
 FLAGS = flags.FLAGS
 
-# Define flags
-flags.DEFINE_string('output_dir', constant.LOCAL_OUTPUT, 'Output Directory.')
-flags.DEFINE_string('input_dir', constant.LOCAL_INPUT, 'Input Directory.')
-flags.DEFINE_integer('num_steps', constant.DEFAULT_NUM_STEP, 'Number of training steps')
-flags.DEFINE_integer('gs', 0, 'Google Cloud Storage.')
+def set_train_flags():
+  flag_keys = ['output_dir', 'input_dir', 'num_steps', 'gs', 'vocabulary_size', 'batch_size', 'skip_window', 'num_skips'
+               'embedding_size', 'language']
+  flag_types = [0, 0, 1, 1, 1, 1, 1, 1, 1, 0]
+  flag_default_values = [constant.LOCAL_OUTPUT, constant.LOCAL_INPUT, constant.DEFAULT_NUM_STEP,
+                         constant.DEFAULT_GS_ENV, constant.VOCABULARY_SIZE, constant.BATCH_SIZE,
+                         constant.SKIP_WINDOW, constant.NUM_SKIPS, constant.EMBEDDING_SIZE, constant.LANGUAGE]
+  flag_default_description = 'Understand it urself'
+  for i in range(0, len(flag_keys) - 1):
+    if flag_types[i] == 0:
+      FLAGS.DEFINE_string(flag_keys[i], flag_default_values[i], flag_default_description)
+    else:
+      FLAGS.DEFINE_integer(flag_keys[i], flag_default_values[i], flag_default_description)
+
 
 def maybe_download(filename, url, expected_bytes):
     """Download a file if not present, and make sure it's the right size."""
@@ -71,7 +80,7 @@ def build_dataset(words, n_words):
 def collect_data(vocabulary_size=10000):
   #  url = 'http://mattmahoney.net/dc/'
    # filename = maybe_download('text8.zip', url, 31344016)
-    input_path = os.path.join(FLAGS.input_dir, "train.en")
+    input_path = os.path.join(FLAGS.input_dir, "train." + FLAGS.language)
     vocabulary = read_data(input_path)
     print(vocabulary[:7])
     data, count, dictionary, reverse_dictionary = build_dataset(vocabulary,
@@ -206,9 +215,10 @@ def run(graph, num_steps):
               log_str = '%s %s,' % (log_str, close_word)
             print(log_str)
       final_embeddings = normalized_embeddings.eval()
-      output_path = get_file_storage(os.path.join(FLAGS.output_dir, "word_embeding_english.npy"))
+      output_path = get_file_storage(os.path.join(FLAGS.output_dir, "word_embeding_" + FLAGS.language + ".npy"))
       np.save(output_path, np.array(final_embeddings))
 
+set_train_flags()
 num_steps = FLAGS.num_steps
 softmax_start_time = dt.datetime.now()
 run(graph, num_steps=num_steps)
