@@ -24,6 +24,7 @@ def set_train_flags():
                          constant.SKIP_WINDOW, constant.NUM_SKIPS, constant.EMBEDDING_SIZE, constant.LANGUAGE]
   flag_default_description = 'Understand it urself'
   for i in range(len(flag_keys)):
+    print('flag ' + flag_keys[i])
     if flag_types[i] == 0:
       flags.DEFINE_string(flag_keys[i], flag_default_values[i], flag_default_description)
     else:
