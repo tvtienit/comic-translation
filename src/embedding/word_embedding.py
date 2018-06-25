@@ -16,7 +16,7 @@ FLAGS = flags.FLAGS
 
 def set_train_flags():
   global flags
-  flag_keys = ['output_dir', 'input_dir', 'num_steps', 'gs', 'vocabulary_size', 'batch_size', 'skip_window', 'num_skips'
+  flag_keys = ['output_dir', 'input_dir', 'num_steps', 'gs', 'vocabulary_size', 'batch_size', 'skip_window', 'num_skips',
                'embedding_size', 'language']
   flag_types = [0, 0, 1, 1, 1, 1, 1, 1, 1, 0]
   flag_default_values = [constant.LOCAL_OUTPUT, constant.LOCAL_INPUT, constant.DEFAULT_NUM_STEP,
