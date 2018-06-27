@@ -63,12 +63,16 @@ def read_data(filename):
 
 def build_dataset(words, n_words):
     """Process raw inputs into a dataset."""
-    count = [['UNK', -1]]
-    count.extend(collections.Counter(words).most_common(n_words - 1))
+    count = []
+    #count.extend(collections.Counter(words).most_common(n_words - 1))
+    with open('train_eng_vocabulary.txt', encoding='utf-8') as f:
+        for line in f:
+            count.append([line[:-1],1])
     dictionary = dict()
     for word, _ in count:
         dictionary[word] = len(dictionary)
     data = list()
+
     unk_count = 0
     for word in words:
         if word in dictionary:
@@ -121,13 +125,13 @@ def generate_batch(data, batch_size, num_skips, skip_window):
     data_index = (data_index + len(data) - span) % len(data)
     return batch, context
 
-vocabulary_size = 50000
+vocabulary_size = 17191
 data, count, dictionary, reverse_dictionary = collect_data(vocabulary_size=vocabulary_size)
 
 batch_size = 128
 embedding_size = 300  # Dimension of the embedding vector.
-skip_window = 2       # How many words to consider left and right.
-num_skips = 2         # How many times to reuse an input to generate a label.
+skip_window = 4       # How many words to consider left and right.
+num_skips = 2      # How many times to reuse an input to generate a label.
 
 # We pick a random validation set to sample nearest neighbors. Here we limit the
 # validation samples to the words that have a low numeric ID, which by
@@ -220,37 +224,15 @@ def run(graph, num_steps):
               log_str = '%s %s,' % (log_str, close_word)
             print(log_str)
       final_embeddings = normalized_embeddings.eval()
-      output_path = get_file_storage(os.path.join(FLAGS.output_dir, "word_embeding_" + FLAGS.language + ".npy"))
-      np.save(output_path, np.array(final_embeddings))
+      return final_embeddings
+      #np.save(output_path, np.array(final_embeddings))
 
 num_steps = FLAGS.num_steps
 softmax_start_time = dt.datetime.now()
-run(graph, num_steps=num_steps)
+final_embeddings= run(graph, num_steps=num_steps)
+output_path = get_file_storage(os.path.join(FLAGS.output_dir, "word_embeding_" + FLAGS.language + ".npy"))
+np.save(output_path, np.array(final_embeddings))
+
 softmax_end_time = dt.datetime.now()
+
 print("Softmax method took {} minutes to run 100 iterations".format((softmax_end_time-softmax_start_time).total_seconds()))
-
-with graph.as_default():
-
-    # Construct the variables for the NCE loss
-    nce_weights = tf.Variable(
-        tf.truncated_normal([vocabulary_size, embedding_size],
-                            stddev=1.0 / math.sqrt(embedding_size)))
-    nce_biases = tf.Variable(tf.zeros([vocabulary_size]))
-
-    nce_loss = tf.reduce_mean(
-        tf.nn.nce_loss(weights=nce_weights,
-                       biases=nce_biases,
-                       labels=train_context,
-                       inputs=embed,
-                       num_sampled=num_sampled,
-                       num_classes=vocabulary_size))
-
-    optimizer = tf.train.GradientDescentOptimizer(1.0).minimize(nce_loss)
-
-    # Add variable initializer.
-    init = tf.global_variables_initializer()
-
-num_steps = FLAGS.num_steps
-nce_start_time = dt.datetime.now()
-run(graph, num_steps)
-nce_end_time = dt.datetime.now()
