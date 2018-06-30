@@ -17,6 +17,9 @@ from tensorflow.contrib.seq2seq.python.ops import attention_wrapper
 from tensorflow.python.layers.core import Dense
 from tensorflow.python.lib.io import file_io
 
+flags = tf.app.flags
+FLAGS = flags.FLAGS
+
 #------------------------------------------------------------------------------------------------------------------------------#
 
 # Define flags
