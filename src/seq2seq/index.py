@@ -51,7 +51,7 @@ arr_emb_files = [emb_file_en, emb_file_vi]
 #------------------------------------------------------------------------------------------------------------------------------#
 
 def np_load(filename):
-    if (FLAGS.gs == 1)
+    if FLAGS.gs == 1:
         f = BytesIO(file_io.read_file_to_string(filename, binary_mode=True))
         return np.load(f)
     return np.load(filename)
