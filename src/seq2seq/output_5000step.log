@@ -1,3 +1,36 @@
+=========
+
+-------------- embedding
+# vocabulary size engl 1791
+# vocabulary size vi 7709
+# step = 12000
+# loss 6.3
+batch_size = 128
+embedding_size = 300  
+skip_window = 4     
+num_skips = 2      
+
+# construction are also the most frequent.
+valid_size = 16    
+valid_window = 100  
+valid_examples = np.random.choice(valid_window, valid_size, replace=False)
+num_sampled = 64    
+
+-------------- end embedding
+
+-------------- seq2seq
+vocab_size= 50000
+num_units = 128
+input_size = 128
+batch_size = 128
+source_sequence_length=40
+target_sequence_length=60
+decoder_type = 'basic' # could be basic or attention
+sentences_to_read = 50000
+#loss 1.25
+-------------- end seq2seq
+=========
+
 Started Training
 ....................................................................................................
 ....................................................................................................
