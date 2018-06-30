@@ -20,19 +20,18 @@ from tensorflow.python.layers.core import Dense
 #------------------------------------------------------------------------------------------------------------------------------#
 
 
-vocab_size= 12000
-num_units = 120
+vocab_size= 50000
+num_units = 128
 input_size = 128
-batch_size = 16
+batch_size = 128
 source_sequence_length=40
 target_sequence_length=60
 decoder_type = 'basic' # could be basic or attention
 sentences_to_read = 50000
-
 #------------------------------------------------------------------------------------------------------------------------------#
 
 src_dictionary = dict()
-with open('train_eng.txt', encoding='utf-8') as f:
+with open('train_eng_vocabulary.txt', encoding='utf-8') as f:
     for line in f:
         #we are discarding last char as it is new line char
         src_dictionary[line[:-1]] = len(src_dictionary)
@@ -45,7 +44,7 @@ print('\t',list(src_reverse_dictionary.items())[:10])
 print('\t','Vocabulary size: ', len(src_dictionary))
 
 tgt_dictionary = dict()
-with open('train_vi.txt', encoding='utf-8') as f:
+with open('train_vi_vocabulary.txt', encoding='utf-8') as f:
     for line in f:
         #we are discarding last char as it is new line char
         tgt_dictionary[line[:-1]] = len(tgt_dictionary)

@@ -1,0 +1,274 @@
+Started Training
+....................................................................................................
+....................................................................................................
+..................................................Step  250
+Actual: Vậy dầu chính trị rất hợp với đạo lý ở Mỹ . <unk> </s> 
+
+Predicted: Chúng là , là , là , là , , <unk> , <unk> </s> 
+
+
+Actual: Vì vậy những gì chúng tôi có thể làm là xác định vùng nào trong não bộ có rối loạn , chúng tôi cũng có khả năng can thiệp trong các mạch thần kinh của não để hoặc là di chuyển lên hay xuống . <unk> </s> 
+
+Predicted: Và tôi là , là ta là thể , , một , , , , , , , thể , , <unk> ta , , thể , , , , , <unk> , , , chúng <unk> . . . . . . . . <unk> </s> 
+
+..................................................
+....................................................................................................
+....................................................................................................
+Step  500
+Actual: Tấm thiệp tiếp theo cần có một đôi lời giải thích trước khi tôi chia sẻ nó với các bạn <unk> </s> 
+
+Predicted: Có sao , , , có thể vài , , , , . bạn . . . . . bạn . </s> 
+
+
+Actual: Và sau đó khi bạn trải nghiệm nó , bạn có thể nhấp thêm vào một liên kết <unk> </s> 
+
+Predicted: Và nếu chúng , bạn có , , , tôi có thể thấy , một một thứ . . </s> 
+
+============= Step  500  =============
+	 Loss:  2.1258302733898162
+....................................................................................................
+....................................................................................................
+..................................................Step  750
+Actual: Vậy , tại sao điều đó quan trọng ? <unk> </s> 
+
+Predicted: Vậy thì điều sao bạn này là trọng . <unk> </s> 
+
+
+Actual: Và tiếp đó , một lần nữa , bức ảnh thật về dòng sông băng bốc lên không gian thực sự là rất đẹp <unk> </s> 
+
+Predicted: Và đây tục , đây người nữa , chúng ảnh , sự sự , , , , , phải . sự là một nhiều . </s> 
+
+..................................................
+....................................................................................................
+....................................................................................................
+Step  1000
+Actual: Những cải tiến khoa học giúp người dân hiểu được các chính sách về an toàn giao thông , thay đổi vị trí khu vực rác thải và các máy xử lý , những cái mà nếu được làm đúng thì sẽ không cần phải thoả hiệp chất lượng cuộc sống cộng đồng . <unk> </s> 
+
+Predicted: Những người số hoá học được những dân chủ những , loại trị , những ninh cầu , tin và đổi , trí , vực đó , , những nhà tính lý học và người hộp chúng chúng làm việc đắn , không thể thiết là mãn . lượng của sống . đồng . <unk> </s> 
+
+
+Actual: Cậu nghĩ cậu biết về đúng và sai ? <unk> </s> 
+
+Predicted: Bạn bạn bạn bạn đấy những đắn không lầm <unk> </s> 
+
+============= Step  1000  =============
+	 Loss:  1.6544852912425996
+....................................................................................................
+....................................................................................................
+..................................................Step  1250
+Actual: Và tôi cũng nhớ , chúng tôi đã mong đợi có bia bên trong két bia nhựa , nhưng nó trống không . <unk> </s> 
+
+Predicted: Và tôi đã có , và tôi đã làm đợi , thể , trong những , , , và nó sẽ hợp thể <unk> </s> 
+
+
+Actual: Tôi , tôi , tôi , của tôi . Như một khúc ca tuyệt vời , bài hát đó . Một sự dạy dỗ tuyệt vời . <unk> </s> 
+
+Predicted: Tôi đã tôi nghĩ tôi nghĩ tôi tôi , Tôi tôi người trường của vời , và nói , , <unk> cách thật biệt . vời . <unk> </s> 
+
+..................................................
+....................................................................................................
+....................................................................................................
+Step  1500
+Actual: Có thể việc này sẽ động viên nhiều người hảo tâm đăng kí để hiến tuỷ cứu người . <unk> </s> 
+
+Predicted: Nó thể là có có có lực với hơn trong trong trí , , có ra , hoả . <unk> </s> 
+
+
+Actual: Và đây là những gì bạn cần phải biết nhiều hơn . <unk> </s> 
+
+Predicted: Và đây là một gì bạn có phải làm ơn điều . <unk> </s> 
+
+============= Step  1500  =============
+	 Loss:  1.4926399548053741
+....................................................................................................
+....................................................................................................
+..................................................Step  1750
+Actual: Có vài nơi ở châu Phi người ta khai thác những mỏ đá quý , và bạn đi đến cát của những con sông có cát đổ ra biển , và một cách văn vẻ thì nhìn như những viên đá quý qua kính hiển vi . <unk> </s> 
+
+Predicted: Có một người bạn đó Phi , , có thác , người đá , vị và có có lên một , mình người người , thể , , , , và nó cách khác hoá như không thấy thế người gạch . vị . viễn . . <unk> </s> 
+
+
+Actual: Các bạn thấy sao ? Các bạn có nghĩ ngân hàng của bạn sẽ cho mọi người thấy điều đó ? <unk> </s> 
+
+Predicted: Làm bạn sẽ rằng ? Bởi bạn sẽ thể rằng ? trăm bạn , thấy thấy người . được đó . <unk> </s> 
+
+..................................................
+....................................................................................................
+....................................................................................................
+Step  2000
+Actual: chúng là những thực thể sống , và đàn gia súc của chúng ta là một trong những thực thể sử dụng đất , nước sạch nhiều nhất và cũng là một trong những thực thể sản xuất ra lượng khí ga gây hiệu ứng nhà kính lớn nhất nhân tố gây thay đổi khí hậu <unk> </s> 
+
+Predicted: Chúng ta một người phẩm của trong và chúng ông đình bị chúng ta , một phần những người phẩm , dụng các nước và Mỹ , hơn định chúng có một phần những người phẩm , xuất hiện khỏi PSA hậu , ra quả . . hiển . . . . quỹ đổi . hậu . </s> 
+
+
+Actual: Đây là 1 ví dụ : nếu tôi nói với bạn , hãy chơi 1 trò tung đồng xu , và tôi sẽ tung 1 đồng xu , nếu ngửa , tôi sẽ trả bạn 10 $ , nhưng bạn sẽ phải trả 4 $ vì để có cơ hội chơi với tôi , hầu hết các bạn sẽ nói 
+
+Predicted: Đây là một câu dụ , Tôi tôi đã về tôi , tôi nhìn nhạc chút chơi , hồ , tôi tôi đã nói bạn cái nghiệp , và bạn , và sẽ nói lời nghĩ . . và nó sẽ không làm lời nó . vậy làm thể bản . . . . <unk> hết . bạn . . 
+
+============= Step  2000  =============
+	 Loss:  1.412615635871887
+....................................................................................................
+....................................................................................................
+..................................................Step  2250
+Actual: Những tế bào nay , gọi là tế bào thần kinh đệm một thời từng được xem là phần cấu trúc không quan trọng của tuỷ sống chẳng có nhiệm vụ gì hơn là giữ những phần quan trọng khác liên kết nhau như giữ những dây thần kinh . <unk> </s> 
+
+Predicted: Những người bào này đang những là những bào gốc kinh tế , số gian , tạo xét một trăm trúc , gian trọng hơn chúng cao , hạn thể vụ của đó cả những nguyên người mềm trọng hơn nhau quan với , thế tinh con chuyền kinh tế <unk> </s> 
+
+
+Actual: Cậu này lúc đó khoảng 16 tuổi và tất cả chúng tôi mới chỉ 12 . <unk> </s> 
+
+Predicted: Ông bé là này , thời , , tôi cả những ta đã tiếp có năm <unk> </s> 
+
+..................................................
+....................................................................................................
+....................................................................................................
+Step  2500
+Actual: Cô ta nhìn tôi một hồi , rồi bật lên cười , bởi vì cô ấy hiểu ra ý tôi đang nói gì . <unk> </s> 
+
+Predicted: Cô ấy nói thấy đi người , và tôi lại tôi , tôi vì tôi ấy là được tôi tưởng , làm về . <unk> </s> 
+
+
+Actual: Chúng tôi đưa bản tóm lược cho các nhà báo và nhà chính sách để có được những dòng tít như thế này . <unk> </s> 
+
+Predicted: Và tôi bắt ra thân tắt , những bạn khoa và những thiết trị của làm thể điều gì chảy này thế nào . <unk> </s> 
+
+============= Step  2500  =============
+	 Loss:  1.3729908905029298
+....................................................................................................
+....................................................................................................
+..................................................Step  2750
+Actual: Một ngày nọ , mẹ tôi đem về nhà một cuốn vở màu xanh ngọc , bà hỏi tôi có thích một quyển nhật kí cá nhân hay không . <unk> </s> 
+
+Predicted: Những người tôi về tôi tôi đã lại một một người sách kịch trắng , , và tôi tôi , thể một vài sách . . . . . . <unk> </s> 
+
+
+Actual: Tin tốt là công nghệ tương tự cho phép tiểu hình hoá đồ điện tử , đang cho phép chúng ta tiểu hình hoá các phòng thí nghiệm sinh học . <unk> </s> 
+
+Predicted: Tin tốt là , nghệ , tự là chúng chúng thuyết ảnh học thị tử vong và có thấy chúng ta có cả . học nước thí nghiệm . học . <unk> </s> 
+
+..................................................
+....................................................................................................
+....................................................................................................
+Step  3000
+Actual: Mua và bán thực phẩm từng là một hoạt động xã hội . <unk> </s> 
+
+Predicted: Nó ra đây ra sự , , một người động cơ hội , <unk> </s> 
+
+
+Actual: Giọng nói : Mỗi lá bài đại diện cho một giai đoạn của 13 chu kỳ mặt trăng . <unk> </s> 
+
+Predicted: Giọng nói : <unk> nghiệp thư diễn học cho những người đoạn của một năm . . . . <unk> </s> 
+
+============= Step  3000  =============
+	 Loss:  1.3384497616291047
+....................................................................................................
+....................................................................................................
+..................................................Step  3250
+Actual: Nhiều người trở nên sợ chất béo . <unk> </s> 
+
+Predicted: Rất người đã nên khó hãi . . <unk> </s> 
+
+
+Actual: Tôi yêu Accenture . Tôi yêu công việc của mình . Tôi yêu Accenture . &quot; <unk> </s> 
+
+Predicted: Tôi yêu thích và Tôi không cầu việc của tôi . Tôi không cầu và Tôi Tôi </s> 
+
+..................................................
+....................................................................................................
+....................................................................................................
+Step  3500
+Actual: Bạn thấy đấy , nhà ảo thuật gia không phải cưa cô gái kia ra làm hai thật đâu . &quot; <unk> </s> 
+
+Predicted: Bạn thấy đấy , không tù thuật , này phải là tay ấy . . . thế . . . <unk> <unk> </s> 
+
+
+Actual: Và tôi rất may mắn đã được học tại University of Iowa nơi tôi đã học tập dưới sự hướng dẫn của Giáo sư James Van Allen người đã xây dựng hệ thống cho vệ tinh đầu tiên của Mỹ . <unk> </s> 
+
+Predicted: Và tôi đã thích mắn khi được dạy vào , , Iowa nhất mà đã làm được trung đáy phát dẫn của mình viên Hawking , Allen , trong từng dựng một thống Nike một sinh . tiên . một . <unk> </s> 
+
+============= Step  3500  =============
+	 Loss:  1.3155716137886047
+....................................................................................................
+....................................................................................................
+..................................................Step  3750
+Actual: Thật kinh khủng . <unk> </s> 
+
+Predicted: Nó là khủng . <unk> </s> 
+
+
+Actual: Họ diễu hành vào trung tâm của <unk> , và họ đưa ra những vấn đề của phụ nữ vào chương trình nghị sự . <unk> </s> 
+
+Predicted: Họ đã lấy một những tâm , họ , và họ đã ra một người đề lớn họ nữ . . trình . . . <unk> </s> 
+
+..................................................
+....................................................................................................
+....................................................................................................
+Step  4000
+Actual: Tôi đề xuất rằng chúng ta nên nhìn vào tự nhiên . <unk> </s> 
+
+Predicted: Tôi nói nghị chúng chúng ta có làm vào các nhiên . <unk> </s> 
+
+
+Actual: Trưởng nhóm là <unk> <unk> , một cậu 34 tuổi ở &#91; không rõ &#93; . <unk> </s> 
+
+Predicted: Sự thành là một <unk> <unk> một người bé tử <unk> <unk> <unk> ? &#93; . <unk> </s> 
+
+============= Step  4000  =============
+	 Loss:  1.289805366039276
+....................................................................................................
+....................................................................................................
+..................................................Step  4250
+Actual: Giải tích thường được dạy rất trễ . <unk> </s> 
+
+Predicted: Câu pháp cực là gọi cho nhiều . <unk> </s> 
+
+
+Actual: Trong một khoảng thời gian ngắn mà tôi có , tôi muốn chỉ ra cách làm như thế nào để tái chế chúng qua một ít hiểu biết của tôi . <unk> </s> 
+
+Predicted: Trong khi vài thời gian ngắn , tôi muốn thể tôi đã nói cho rằng bạn thế thế nào để làm tạo lại tôi một cách hơn . về mình . <unk> </s> 
+
+..................................................
+....................................................................................................
+....................................................................................................
+Step  4500
+Actual: Bởi vì rất ít người ở đây sợ bị thất bại . <unk> </s> 
+
+Predicted: Bởi vì rất nhiều người ta đây , hãi lúng bại . <unk> </s> 
+
+
+Actual: Rồi tôi đưa mắt nhìn lại cô ấy và rồi cô ấy hỏi , &quot; Cậu thực sự sẽ cố đột nhập vào và lấy cắp đoạn video đó trước khi họ đưa nó trên YouTube sao ? &quot; <unk> </s> 
+
+Predicted: Nên tôi nói bắt những vào và ấy và nói &quot; ấy nói , &quot; <unk> , sự là có gắng quỵ &quot; những nói những này nào &quot; &quot; đây chúng không ra . thế . ? <unk> <unk> </s> 
+
+============= Step  4500  =============
+	 Loss:  1.2684460473060608
+....................................................................................................
+....................................................................................................
+..................................................Step  4750
+Actual: Ta có thể làm vậy trong 1 năm , có thể trong 2 năm liên tục <unk> </s> 
+
+Predicted: Và có thể thấy một , một đoạn , bạn thể bạn một phút qua tục . </s> 
+
+
+Actual: Đây là dụng cụ duy nhất ông ta cần trong quá trình điều trị . <unk> </s> 
+
+Predicted: Đây là một cụ của nhất của ấy đã phải một trình . đó . <unk> </s> 
+
+..................................................
+....................................................................................................
+....................................................................................................
+Step  5000
+Actual: Đó là rối loạn di truyền và liên quan tới cử động xoắn vặn , và những trẻ em mắc bệnh này sẽ có những cử động xoắn vặn ngày càng tăng , lặp đi lặp lại cho tới khi chúng không thở nổi , tới mức đau đớn , nhiễm trùng tiết <unk> rồi tử vong . <unk> </s> 
+
+Predicted: Đó là một loạn và truyền và những tục đến những động , vặn và và chúng người em có và , , có một thứ tri xoắn vặn , , , lên và lại lặp lại , chúng khi chúng ta thể , tiếng và những độ . . và sắc . kiệm </s> 
+
+
+Actual: Tôi lộn trở lên , không phải vì thiếu không khí . <unk> </s> 
+
+Predicted: Nhưng đã ra lại , nó phải là nó . . . <unk> </s> 
+
+============= Step  5000  =============
+	 Loss:  1.2524187841415406
+....................................................................................................
+....................................................................................................
+..............
