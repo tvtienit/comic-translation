@@ -5,7 +5,6 @@ import numpy as np
 import os
 import random
 import tensorflow as tf
-from matplotlib import pylab
 from collections import Counter
 from io import BytesIO
 import csv
