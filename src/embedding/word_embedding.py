@@ -33,6 +33,7 @@ def set_train_flags():
   print('[INFO] Configure flag successfully')
 
 set_train_flags()
+vocabulary_size = FLAGS.vocabulary_size
 
 def maybe_download(filename, url, expected_bytes):
     """Download a file if not present, and make sure it's the right size."""
@@ -65,14 +66,18 @@ def read_data(filename):
     return data
 
 def build_dataset(words, n_words):
+    global vocabulary_size
     """Process raw inputs into a dataset."""
     count = []
     filename = os.path.join(FLAGS.voc_data, 'train_' + FLAGS.language + '_vocabulary.txt')
+    print("FILE: " + filename)
     encoding_type = 'utf-8'
     #count.extend(collections.Counter(words).most_common(n_words - 1))
     file_io = read_file(filename, FLAGS.gs, encoding_type)
     for line in file_io:
       count.append([line[:-1],1])
+    print(count[:5])
+    vocabulary_size=len(count)
     dictionary = dict()
     for word, _ in count:
         dictionary[word] = len(dictionary)
@@ -130,7 +135,6 @@ def generate_batch(data, batch_size, num_skips, skip_window):
     data_index = (data_index + len(data) - span) % len(data)
     return batch, context
 
-vocabulary_size = 17191
 data, count, dictionary, reverse_dictionary = collect_data(vocabulary_size=vocabulary_size)
 
 batch_size = 128
