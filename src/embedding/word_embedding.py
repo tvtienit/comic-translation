@@ -70,6 +70,7 @@ def build_dataset(words, n_words):
     """Process raw inputs into a dataset."""
     count = []
     filename = os.path.join(FLAGS.voc_data, 'train_' + FLAGS.language + '_vocabulary.txt')
+    print("VOCA_PATH: " + filename)
     print("FILE: " + filename)
     encoding_type = 'utf-8'
     #count.extend(collections.Counter(words).most_common(n_words - 1))
@@ -100,6 +101,7 @@ def collect_data(vocabulary_size=10000):
   #  url = 'http://mattmahoney.net/dc/'
    # filename = maybe_download('text8.zip', url, 31344016)
     input_path = os.path.join(FLAGS.input_dir, "train." + FLAGS.language)
+    print("INPUT PATH: " + input_path)
     vocabulary = read_data(input_path)
     print(vocabulary[:7])
     data, count, dictionary, reverse_dictionary = build_dataset(vocabulary,
@@ -137,10 +139,10 @@ def generate_batch(data, batch_size, num_skips, skip_window):
 
 data, count, dictionary, reverse_dictionary = collect_data(vocabulary_size=vocabulary_size)
 
-batch_size = FLAGS.batch_size
-embedding_size = FLAGS.embedding_size  # Dimension of the embedding vector.
-skip_window = FLAGS.skip_window       # How many words to consider left and right.
-num_skips = FLAGS.num_skips      # How many times to reuse an input to generate a label.
+batch_size = 128
+embedding_size = 56  # Dimension of the embedding vector.
+skip_window = 4       # How many words to consider left and right.
+num_skips = 2      # How many times to reuse an input to generate a label.
 
 # We pick a random validation set to sample nearest neighbors. Here we limit the
 # validation samples to the words that have a low numeric ID, which by
@@ -197,6 +199,7 @@ def get_file_storage(output_path):
 
 
 def run(graph, num_steps):
+    print("START WITHIN " + num_steps + " STEPS")
     with tf.Session(graph=graph) as session:
       # We must initialize all variables before we use them.
       init.run()
@@ -236,7 +239,7 @@ def run(graph, num_steps):
       return final_embeddings
       #np.save(output_path, np.array(final_embeddings))
 
-num_steps = FLAGS.num_steps
+num_steps = 100000
 softmax_start_time = dt.datetime.now()
 final_embeddings= run(graph, num_steps=num_steps)
 output_path = get_file_storage(os.path.join(FLAGS.output_dir, "word_embeding_" + FLAGS.language + ".npy"))
