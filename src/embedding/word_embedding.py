@@ -49,7 +49,7 @@ def maybe_download(filename, url, expected_bytes):
 
 def read_file(filename, method, encoding):
   encoding_type = encoding
-  if encoding is None
+  if encoding is None:
     encoding_type = 'ascii'
   if method == 1:
     with tf.gfile.GFile(filename, "r", encoding = encoding_type) as g_file:
