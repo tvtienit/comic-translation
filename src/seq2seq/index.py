@@ -48,7 +48,7 @@ target_sequence_length=60
 decoder_type = 'basic' # could be basic or attention
 sentences_to_read = 50000
 emb_file_en = os.path.join(FLAGS.input_dir, 'word_embeding_en.npy')
-emb_file_vi = os.path.join(FLAGS.output_dir, 'word_embeding_vi.npy')
+emb_file_vi = os.path.join(FLAGS.input_dir, 'word_embeding_vi.npy')
 arr_emb_files = [emb_file_en, emb_file_vi]
 #------------------------------------------------------------------------------------------------------------------------------#
 
