@@ -11,3 +11,4 @@ SKIP_WINDOW = 6
 NUM_SKIPS = 2
 EMBEDDING_SIZE = 128
 LANGUAGE = 'en'
+VOCABULARY_DATA = '../../data/embedding'

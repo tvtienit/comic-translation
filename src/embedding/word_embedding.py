@@ -17,11 +17,11 @@ FLAGS = flags.FLAGS
 def set_train_flags():
   global flags
   flag_keys = ['output_dir', 'input_dir', 'num_steps', 'gs', 'vocabulary_size', 'batch_size', 'skip_window', 'num_skips',
-               'embedding_size', 'language']
-  flag_types = [0, 0, 1, 1, 1, 1, 1, 1, 1, 0]
+               'embedding_size', 'language', 'voc_data']
+  flag_types = [0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0]
   flag_default_values = [constant.LOCAL_OUTPUT, constant.LOCAL_INPUT, constant.DEFAULT_NUM_STEP,
                          constant.DEFAULT_GS_ENV, constant.VOCABULARY_SIZE, constant.BATCH_SIZE,
-                         constant.SKIP_WINDOW, constant.NUM_SKIPS, constant.EMBEDDING_SIZE, constant.LANGUAGE]
+                         constant.SKIP_WINDOW, constant.NUM_SKIPS, constant.EMBEDDING_SIZE, constant.LANGUAGE, constant.VOCABULARY_DATA]
   flag_default_description = 'Understand it urself'
   for i in range(len(flag_keys)):
     print('flag ' + flag_keys[i])
@@ -47,27 +47,32 @@ def maybe_download(filename, url, expected_bytes):
             'Failed to verify ' + filename + '. Can you get to it with a browser?')
     return filename
 
+def read_file(filename, method, encoding):
+  encoding_type = encoding
+  if encoding is None
+    encoding_type = 'ascii'
+  if method == 1:
+    with tf.gfile.GFile(filename, "r", encoding = encoding_type) as g_file:
+      return g_file
+  with open(filename, 'r', encoding = encoding_type) as lcl_file:
+    return lcl_file
 
 # Read the data into a list of strings.
 def read_data(filename):
     """Extract the first file enclosed in a zip file as a list of words."""
-    data = None
-    if FLAGS.gs == 1:
-      with tf.gfile.GFile(filename, "r") as f:
-        data = tf.compat.as_str(f.read()).split()
-    else:
-      with open(filename, 'r') as f:
-        data = tf.compat.as_str(f.read()).split()
-
+    file_io = read_file(filename, FLAGS.gs, None)
+    data = tf.compat.as_str(file_io.read()).split()
     return data
 
 def build_dataset(words, n_words):
     """Process raw inputs into a dataset."""
     count = []
+    filename = os.path.join(FLAGS.voc_data, 'train_' + FLAGS.language + '_vocabulary.txt')
+    encoding_type = 'utf-8'
     #count.extend(collections.Counter(words).most_common(n_words - 1))
-    with open('train_eng_vocabulary.txt', encoding='utf-8') as f:
-        for line in f:
-            count.append([line[:-1],1])
+    file_io = read_file(filename, FLAGS.gs, encoding_type)
+    for line in file_io:
+      count.append([line[:-1],1])
     dictionary = dict()
     for word, _ in count:
         dictionary[word] = len(dictionary)
