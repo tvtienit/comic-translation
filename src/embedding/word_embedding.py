@@ -52,7 +52,7 @@ def read_file(filename, method, encoding):
   if encoding is None:
     encoding_type = 'ascii'
   if method == 1:
-    with tf.gfile.GFile(filename, "r", encoding = encoding_type) as g_file:
+    with tf.gfile.GFile(filename, "r") as g_file:
       return g_file
   with open(filename, 'r', encoding = encoding_type) as lcl_file:
     return lcl_file
