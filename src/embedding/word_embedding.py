@@ -137,10 +137,10 @@ def generate_batch(data, batch_size, num_skips, skip_window):
 
 data, count, dictionary, reverse_dictionary = collect_data(vocabulary_size=vocabulary_size)
 
-batch_size = 128
-embedding_size = 300  # Dimension of the embedding vector.
-skip_window = 4       # How many words to consider left and right.
-num_skips = 2      # How many times to reuse an input to generate a label.
+batch_size = FLAGS.batch_size
+embedding_size = FLAGS.embedding_size  # Dimension of the embedding vector.
+skip_window = FLAGS.skip_window       # How many words to consider left and right.
+num_skips = FLAGS.num_skips      # How many times to reuse an input to generate a label.
 
 # We pick a random validation set to sample nearest neighbors. Here we limit the
 # validation samples to the words that have a low numeric ID, which by
