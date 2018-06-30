@@ -8,6 +8,7 @@ import random
 import tensorflow as tf
 from matplotlib import pylab
 from collections import Counter
+from io import BytesIO
 import csv
 
 # Seq2Seq Items
@@ -16,10 +17,27 @@ from tensorflow.python.ops.rnn_cell import LSTMCell
 from tensorflow.python.ops.rnn_cell import MultiRNNCell
 from tensorflow.contrib.seq2seq.python.ops import attention_wrapper
 from tensorflow.python.layers.core import Dense
+from tensorflow.python.lib.io import file_io
 
 #------------------------------------------------------------------------------------------------------------------------------#
 
+# Define flags
+def set_train_flags():
+  global flags
+  flag_keys = ['output_dir', 'input_dir', 'gs', 'embedding_dir']
+  flag_types = [0, 0, 1, 0]
+  flag_default_values = ['../../data/seq2seq', '../../data/seq2seq', 0, '../../data/seq2seq']
+  flag_default_description = 'Understand it urself'
+  for i in range(len(flag_keys)):
+    print('flag ' + flag_keys[i])
+    if flag_types[i] == 0:
+      flags.DEFINE_string(flag_keys[i], flag_default_values[i], flag_default_description)
+    else:
+      flags.DEFINE_integer(flag_keys[i], flag_default_values[i], flag_default_description)
 
+  print('[INFO] Configure flag successfully')
+
+set_train_flags()
 vocab_size= 50000
 num_units = 128
 input_size = 128
@@ -28,10 +46,30 @@ source_sequence_length=40
 target_sequence_length=60
 decoder_type = 'basic' # could be basic or attention
 sentences_to_read = 50000
+emb_file_en = os.path.join(FLAGS.input_dir, 'word_embeding_en.npy')
+emb_file_vi = os.path.join(FLAGS.output_dir, 'word_embeding_vi.npy')
+arr_emb_files = [emb_file_en, emb_file_vi]
 #------------------------------------------------------------------------------------------------------------------------------#
 
+def np_load(filename):
+    if (FLAGS.gs == 1)
+        f = BytesIO(file_io.read_file_to_string(filename, binary_mode=True))
+        return np.load(f)
+    return np.load(filename)
+
+def read_file(filename, method, encoding):
+  encoding_type = encoding
+  if encoding is None:
+    encoding_type = 'ascii'
+  if method == 1:
+    with tf.gfile.GFile(filename, "r") as g_file:
+      return g_file
+  with open(filename, 'r', encoding = encoding_type) as lcl_file:
+    return lcl_file
+
 src_dictionary = dict()
-with open('train_eng_vocabulary.txt', encoding='utf-8') as f:
+input_voc_file = os.path.join(FLAGS.input_dir, 'train_en_vocabulary.txt')
+with read_file(input_voc_file, FLAGS.gs, encoding='utf-8') as f:
     for line in f:
         #we are discarding last char as it is new line char
         src_dictionary[line[:-1]] = len(src_dictionary)
@@ -44,7 +82,8 @@ print('\t',list(src_reverse_dictionary.items())[:10])
 print('\t','Vocabulary size: ', len(src_dictionary))
 
 tgt_dictionary = dict()
-with open('train_vi_vocabulary.txt', encoding='utf-8') as f:
+input_voc_file = os.path.join(FLAGS.input_dir, 'train_vi_vocabulary.txt')
+with read_file(input_voc_file, FLAGS.gs, encoding='utf-8') as f:
     for line in f:
         #we are discarding last char as it is new line char
         tgt_dictionary[line[:-1]] = len(tgt_dictionary)
@@ -62,15 +101,15 @@ target_sent = []
 test_source_sent = []
 test_target_sent = []
 
-
-with open('train_eng.txt', encoding='utf-8') as f:
+input_voc_file = os.path.join(FLAGS.input_dir, 'train_en.txt')
+with read_file(input_voc_file, FLAGS.gs, encoding='utf-8') as f:
     for l_i, line in enumerate(f):
         source_sent.append(line)
         if len(source_sent)>=sentences_to_read:
             break
         
-            
-with open('train_vi.txt', encoding='utf-8') as f:
+input_voc_file = os.path.join(FLAGS.input_dir, 'train_vi.txt')
+with read_file(input_voc_file, FLAGS.gs, encoding='utf-8') as f:
     for l_i, line in enumerate(f):
         target_sent.append(line)
         if len(target_sent)>=sentences_to_read:
@@ -189,13 +228,16 @@ input_size = 128
 
 class DataGeneratorMT(object):
     
-    def __init__(self,batch_size,num_unroll,is_source):
+    def __init__(self,batch_size,num_unroll,is_source,emb_files):
+        if emb_files is not None:
+            self._word_embedding_en = emb_files[0]
+            self._word_embedding_vi = emb_files[1]
         self._batch_size = batch_size
         self._num_unroll = num_unroll
         self._cursor = [0 for offset in range(self._batch_size)]
         
-        self._src_word_embeddings = np.load('word_embeding_english_1step.npy')
-        self._tgt_word_embeddings = np.load('word_embeding_vi_12000step.npy')
+        self._src_word_embeddings = np_load(self._word_embedding_en)
+        self._tgt_word_embeddings = np_load(self._word_embedding_vi)
         #self._src_word_embeddings = np.load('de-embeddings.npy')
         #self._tgt_word_embeddings = np.load('en-embeddings.npy')
         
@@ -272,7 +314,7 @@ class DataGeneratorMT(object):
         self._cursor = [0 for offset in range(self._batch_size)]
         
 # Running a tiny set to see if the implementation correct
-dg = DataGeneratorMT(batch_size=5,num_unroll=40,is_source=True)
+dg = DataGeneratorMT(batch_size=5,num_unroll=40,is_source=True,emb_files=arr_emb_files)
 u_data, u_labels, _, _ = dg.unroll_batches([0,1,2,3,4])
 
 print('Source data')
@@ -281,7 +323,7 @@ for _, lbl in zip(u_data,u_labels):
 
         
 # Running a tiny set to see if the implementation correct
-dg = DataGeneratorMT(batch_size=5,num_unroll=60,is_source=False)
+dg = DataGeneratorMT(batch_size=5,num_unroll=60,is_source=False,emb_files=arr_emb_files)
 u_data, u_labels, _, _ = dg.unroll_batches([0,2,3,4,5])
 print('\nTarget data batch (first time)')
 for d_i,(_, lbl) in enumerate(zip(u_data,u_labels)):
@@ -305,8 +347,8 @@ enc_train_inputs = []
 dec_train_inputs = []
 
 # Need to use pre-trained word embeddings
-encoder_emb_layer = tf.convert_to_tensor(np.load('word_embeding_english_1step.npy'))
-decoder_emb_layer = tf.convert_to_tensor(np.load('word_embeding_vi_12000step.npy'))
+encoder_emb_layer = tf.convert_to_tensor(np_load(emb_file_en))
+decoder_emb_layer = tf.convert_to_tensor(np_load(emb_file_vi))
 #encoder_emb_layer = tf.convert_to_tensor(np.load('de-embeddings.npy'))
 #decoder_emb_layer = tf.convert_to_tensor(np.load('en-embeddings.npy'))
 
@@ -418,14 +460,14 @@ bleu_scores_over_time = []
 loss_over_time = []
 tf.global_variables_initializer().run()
 
-src_word_embeddings = np.load('word_embeding_english_1step.npy')
-tgt_word_embeddings = np.load('word_embeding_vi_12000step.npy')
+src_word_embeddings = np_load(emb_file_en)
+tgt_word_embeddings = np_load(emb_file_vi)
 #src_word_embeddings = np.load('de-embeddings.npy')
 #tgt_word_embeddings = np.load('en-embeddings.npy')
 
 # Defining data generators
-enc_data_generator = DataGeneratorMT(batch_size=batch_size,num_unroll=source_sequence_length,is_source=True)
-dec_data_generator = DataGeneratorMT(batch_size=batch_size,num_unroll=target_sequence_length,is_source=False)
+enc_data_generator = DataGeneratorMT(batch_size=batch_size,num_unroll=source_sequence_length,is_source=True,emb_files=arr_emb_files)
+dec_data_generator = DataGeneratorMT(batch_size=batch_size,num_unroll=target_sequence_length,is_source=False,emb_files=arr_emb_files)
 
 num_steps = 12000
 avg_loss = 0
