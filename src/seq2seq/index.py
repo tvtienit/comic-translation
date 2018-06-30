@@ -1,6 +1,5 @@
 # These are all the modules we'll be using later. Make sure you can import them
 # before proceeding further.
-%matplotlib inline
 import math
 import numpy as np
 import os
@@ -24,9 +23,9 @@ from tensorflow.python.lib.io import file_io
 # Define flags
 def set_train_flags():
   global flags
-  flag_keys = ['output_dir', 'input_dir', 'gs', 'embedding_dir']
-  flag_types = [0, 0, 1, 0]
-  flag_default_values = ['../../data/seq2seq', '../../data/seq2seq', 0, '../../data/seq2seq']
+  flag_keys = ['output_dir', 'input_dir', 'gs', 'embedding_dir', 'num_steps']
+  flag_types = [0, 0, 1, 0, 1]
+  flag_default_values = ['../../data/seq2seq', '../../data/seq2seq', 0, '../../data/seq2seq', 12000]
   flag_default_description = 'Understand it urself'
   for i in range(len(flag_keys)):
     print('flag ' + flag_keys[i])
@@ -469,7 +468,7 @@ tgt_word_embeddings = np_load(emb_file_vi)
 enc_data_generator = DataGeneratorMT(batch_size=batch_size,num_unroll=source_sequence_length,is_source=True,emb_files=arr_emb_files)
 dec_data_generator = DataGeneratorMT(batch_size=batch_size,num_unroll=target_sequence_length,is_source=False,emb_files=arr_emb_files)
 
-num_steps = 12000
+num_steps = FLAGS.num_steps
 avg_loss = 0
 
 bleu_labels, bleu_preds = [],[]
