@@ -348,6 +348,8 @@ enc_train_inputs = []
 dec_train_inputs = []
 
 # Need to use pre-trained word embeddings
+matrix = np_load(emb_file_en)
+print(matrix[:5])
 encoder_emb_layer = tf.convert_to_tensor(np_load(emb_file_en))
 decoder_emb_layer = tf.convert_to_tensor(np_load(emb_file_vi))
 #encoder_emb_layer = tf.convert_to_tensor(np.load('de-embeddings.npy'))
