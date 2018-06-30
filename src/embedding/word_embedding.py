@@ -199,7 +199,7 @@ def get_file_storage(output_path):
 
 
 def run(graph, num_steps):
-    print("START WITHIN " + num_steps + " STEPS")
+    print("START WITHIN " + str(num_steps) + " STEPS")
     with tf.Session(graph=graph) as session:
       # We must initialize all variables before we use them.
       init.run()
